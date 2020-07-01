@@ -1,4 +1,4 @@
-# Login wirh Firebase and Clean Architecture
+# Login with Firebase and Clean Architecture
 
 Login with email and phone number using firebase auth, MobX, Modular and Clean Architecture.
 
