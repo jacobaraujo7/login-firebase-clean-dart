@@ -61,7 +61,8 @@ vars:
     clean: flutter clean
     get: flutter pub get
     runner: flutter pub run build_runner
-scripts: 
+scripts:
+    coverage: flutter test --coverage & remove_from_coverage -f coverage/lcov.info -r .g.dart$
     mobx_build: $clean & $get & $runner build --delete-conflicting-outputs
     mobx_watch: $clean & $get & $runner watch --delete-conflicting-outputs
 
