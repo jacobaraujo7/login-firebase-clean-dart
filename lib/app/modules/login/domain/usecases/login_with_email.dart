@@ -1,17 +1,22 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:guard_class/app/core/errors/failure.dart';
 import 'package:guard_class/app/core/usecase/usecase.dart';
-import 'package:guard_class/app/modules/login/domain/entities/login_credencials.dart';
+import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/data/models/login_credencials.dart';
+import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 
-class LoginWithEmail implements UseCase<FirebaseUser, LoginCredentials> {
+part 'login_with_email.g.dart';
+
+@Injectable(singleton: false)
+class LoginWithEmail implements UseCase<User, LoginCredentials> {
   final LoginRepository repository;
 
   LoginWithEmail(this.repository);
 
   @override
-  Future<Either<Failure, FirebaseUser>> call([LoginCredentials c]) async {
+  Future<Either<Failure, User>> call([LoginCredentials c]) async {
     if (!c.isValidEmail) {
       return Left(ErrorLoginEmail(message: "Invalid Email"));
     } else if (!c.isValidPassword) {

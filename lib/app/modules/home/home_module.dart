@@ -9,6 +9,4 @@ class HomeModule extends ChildModule {
   List<Router> get routers => [
         Router(Modular.initialRoute, child: (_, args) => HomePage()),
       ];
-
-  static Inject get to => Inject<HomeModule>.of();
 }

@@ -3,6 +3,16 @@
 part of 'auth_store.dart';
 
 // **************************************************************************
+// InjectionGenerator
+// **************************************************************************
+
+final authStore = BindInject(
+  (i) => AuthStore(i<FirebaseAuth>()),
+  singleton: true,
+  lazy: true,
+);
+
+// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
@@ -19,13 +29,13 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   final _$userAtom = Atom(name: '_AuthStoreBase.user');
 
   @override
-  FirebaseUser get user {
+  LoggedUserInfo get user {
     _$userAtom.reportRead();
     return super.user;
   }
 
   @override
-  set user(FirebaseUser value) {
+  set user(LoggedUserInfo value) {
     _$userAtom.reportWrite(value, super.user, () {
       super.user = value;
     });
@@ -35,7 +45,7 @@ mixin _$AuthStore on _AuthStoreBase, Store {
       ActionController(name: '_AuthStoreBase');
 
   @override
-  void setUser(FirebaseUser value) {
+  void setUser(LoggedUserInfo value) {
     final _$actionInfo = _$_AuthStoreBaseActionController.startAction(
         name: '_AuthStoreBase.setUser');
     try {

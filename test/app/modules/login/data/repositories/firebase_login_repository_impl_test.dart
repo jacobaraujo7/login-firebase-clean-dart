@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
 import 'package:guard_class/app/modules/login/data/datasources/firebase_datasource.dart';
+import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
 import 'package:guard_class/app/modules/login/data/repositories/firebase_login_repository_impl.dart';
 import 'package:mockito/mockito.dart';
 

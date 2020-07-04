@@ -3,6 +3,17 @@
 part of 'login_controller.dart';
 
 // **************************************************************************
+// InjectionGenerator
+// **************************************************************************
+
+final loginController = BindInject(
+  (i) =>
+      LoginController(i<LoginWithEmail>(), i<LoadingDialog>(), i<AuthStore>()),
+  singleton: true,
+  lazy: true,
+);
+
+// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 

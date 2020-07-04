@@ -1,10 +1,8 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
 import 'package:guard_class/app/modules/login/data/datasources/firebase_datasource.dart';
+import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
 import 'package:mockito/mockito.dart';
 
 class FirebaseDataSourceMock extends Mock implements FirebaseDataSource {}

@@ -1,11 +1,15 @@
 import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+part 'loading_dialog.g.dart';
 
 abstract class LoadingDialog {
   void show();
   Future<void> hide();
 }
 
+@Injectable()
 class LoadingDialogImpl implements LoadingDialog {
   OverlayEntry _entry;
 

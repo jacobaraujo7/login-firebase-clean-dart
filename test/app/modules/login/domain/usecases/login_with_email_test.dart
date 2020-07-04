@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
-import 'package:guard_class/app/modules/login/domain/entities/login_credencials.dart';
+import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/data/models/login_credencials.dart';
+import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/login_with_email.dart';
 import 'package:mockito/mockito.dart';
@@ -25,7 +25,7 @@ main() {
     expect(result.leftMap((l) => l is ErrorLoginEmail), Left(true));
   });
   test('should consume repository loginEmail', () async {
-    var user = FirebaseUserMock();
+    var user = User();
     when(repository.loginEmail(
             email: anyNamed('email'), password: anyNamed('password')))
         .thenAnswer((_) async => Right(user));

@@ -11,7 +11,7 @@ import 'modules/home/home_module.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => AuthStore(i())),
+        authStore,
         Bind((i) => FirebaseAuth.instance),
       ];
 
@@ -24,6 +24,4 @@ class AppModule extends MainModule {
 
   @override
   Widget get bootstrap => AppWidget();
-
-  static Inject get to => Inject<AppModule>.of();
 }

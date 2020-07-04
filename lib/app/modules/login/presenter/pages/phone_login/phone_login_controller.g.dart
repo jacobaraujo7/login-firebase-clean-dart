@@ -3,6 +3,17 @@
 part of 'phone_login_controller.dart';
 
 // **************************************************************************
+// InjectionGenerator
+// **************************************************************************
+
+final phoneLoginController = BindInject(
+  (i) => PhoneLoginController(
+      i<LoginWithPhone>(), i<LoadingDialog>(), i<AuthStore>()),
+  singleton: true,
+  lazy: true,
+);
+
+// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 

@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
-import 'package:guard_class/app/modules/login/domain/entities/login_credencials.dart';
+import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/data/models/login_credencials.dart';
+import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/verify_phone_code.dart';
 import 'package:mockito/mockito.dart';
@@ -24,7 +25,7 @@ main() {
     expect(result.leftMap((l) => l is InternalError), Left(true));
   });
   test('should consume repository verifyPhoneCode', () async {
-    var user = FirebaseUserMock();
+    var user = User();
     when(repository.verifyPhoneCode(
             code: anyNamed('code'), verificationId: anyNamed('verificationId')))
         .thenAnswer((_) async => Right(user));

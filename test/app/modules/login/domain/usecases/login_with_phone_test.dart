@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
-import 'package:guard_class/app/modules/login/domain/entities/login_credencials.dart';
+import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/data/models/login_credencials.dart';
+import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
-import 'package:guard_class/app/modules/login/domain/usecases/login_with_email.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/login_with_phone.dart';
 import 'package:mockito/mockito.dart';
 
@@ -15,7 +15,7 @@ class FirebaseUserMock extends Mock implements FirebaseUser {}
 main() {
   final repository = LoginRepositoryMock();
   final usecase = LoginWithPhone(repository);
-  final user = FirebaseUserMock();
+  final user = User();
   test('should verify if phone is valid', () async {
     var result = await usecase(LoginCredentials(phone: ""));
     expect(result.leftMap((l) => l is ErrorLoginPhone), Left(true));

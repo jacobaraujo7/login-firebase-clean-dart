@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/modules/login/domain/entities/login_credencials.dart';
+import 'package:guard_class/app/modules/login/data/models/login_credencials.dart';
 
 main() {
   test('should make object copy', () {

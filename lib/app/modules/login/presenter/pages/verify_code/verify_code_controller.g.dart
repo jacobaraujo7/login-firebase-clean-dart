@@ -3,6 +3,18 @@
 part of 'verify_code_controller.dart';
 
 // **************************************************************************
+// InjectionGenerator
+// **************************************************************************
+
+final verifyCodeController = BindInject(
+  (i) => VerifyCodeController(
+      i<VerifyPhoneCode>(), i<LoadingDialog>(), i<AuthStore>(),
+      verificationId: i.args.params['verificationId']),
+  singleton: true,
+  lazy: true,
+);
+
+// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
