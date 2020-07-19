@@ -2,10 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:guard_class/app/modules/login/data/datasources/firebase_datasource.dart';
-import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/domain/entities/logged_user.dart';
+import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
 import 'package:mockito/mockito.dart';
-
-class FirebaseDataSourceMock extends Mock implements FirebaseDataSource {}
 
 class FirebaseUserMock extends Mock implements FirebaseUser {}
 
@@ -45,13 +44,21 @@ final credential = AuthCredentialMock();
 final authException = AuthExceptionMock();
 main() {
   final auth = FirebaseAuthMock();
-  final user = FirebaseUserMock();
+  final firebaseUser = FirebaseUserMock();
+  final user = const LoggedUser(
+    name: "Jacob",
+    phoneNumber: "123456",
+    email: "jacob@flutterando.com",
+  );
 
   final authResult = AuthResultMock();
   final datasource = FirebaseDataSourceImpl(auth);
 
   setUpAll(() {
-    when(authResult.user).thenReturn(user);
+    when(firebaseUser.displayName).thenReturn("Jacob");
+    when(firebaseUser.email).thenReturn("jacob@flutterando.com");
+    when(firebaseUser.phoneNumber).thenReturn("123456");
+    when(authResult.user).thenReturn(firebaseUser);
 
     when(auth.signInWithEmailAndPassword(
             email: anyNamed('email'), password: anyNamed('password')))
@@ -60,24 +67,30 @@ main() {
     when(auth.signInWithCredential(any)).thenAnswer((_) async => authResult);
   });
 
-  test('should return FirebaseUser loginEmail', () async {
+  test('should return Logged User  loginEmail', () async {
     var result = await datasource.loginEmail();
-    expect(result, user);
+    expect(result.name, equals(user.name));
+    expect(result.phoneNumber, equals(user.phoneNumber));
+    expect(result.email, equals(user.email));
   });
-  test('should return FirebaseUser validateCode', () async {
+  test('should return Logged User  validateCode', () async {
     var result = await datasource.validateCode();
-    expect(result, user);
+    expect(result.name, equals(user.name));
+    expect(result.phoneNumber, equals(user.phoneNumber));
+    expect(result.email, equals(user.email));
   });
 
-  test('should return FirebaseUser loginPhone', () async {
+  test('should return Logged User loginPhone', () async {
     var result = await datasource.loginPhone(phone: "0");
-    expect(result, user);
+    expect(result.name, equals(user.name));
+    expect(result.phoneNumber, equals(user.phoneNumber));
+    expect(result.email, equals(user.email));
   });
   test('should return FirebaseUser loginPhone Error', () async {
     expect(() async => await datasource.loginPhone(phone: "1"),
         throwsA(authException));
   });
-  test('should return FirebaseUser loginPhone Not Automatic Retrieve',
+  test('should return NotAutomaticRetrieved loginPhone Not Automatic Retrieve',
       () async {
     expect(() async => await datasource.loginPhone(phone: "3"),
         throwsA(isA<NotAutomaticRetrieved>()));

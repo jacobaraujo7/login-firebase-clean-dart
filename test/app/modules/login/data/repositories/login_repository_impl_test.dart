@@ -1,36 +1,25 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/modules/login/data/datasources/firebase_datasource.dart';
-import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
-import 'package:guard_class/app/modules/login/data/repositories/firebase_login_repository_impl.dart';
-import 'package:guard_class/app/modules/login/domain/entities/user.dart';
+import 'package:guard_class/app/modules/login/domain/entities/logged_user.dart';
+import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
+import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
+import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
+import 'package:guard_class/app/modules/login/infra/repositories/login_repository_impl.dart';
 import 'package:mockito/mockito.dart';
 
-class FirebaseDataSourceMock extends Mock implements FirebaseDataSource {}
-
-class FirebaseUserMock extends Mock implements FirebaseUser {}
+class FirebaseDataSourceMock extends Mock implements LoginDataSource {}
 
 main() {
   final datasource = FirebaseDataSourceMock();
-  var firebaseUser = FirebaseUserMock();
-  final repository = FirebaseLoginRepositoryImpl(datasource);
-
-  final tName = "Jacob";
-  final tEmail = "jacob@gmail.com";
-  final tPhone = "32145576473";
-
-  setUpAll(() {
-    when(firebaseUser.displayName).thenReturn(tName);
-    when(firebaseUser.email).thenReturn(tEmail);
-    when(firebaseUser.phoneNumber).thenReturn(tPhone);
-  });
+  final userReturn = UserModel(
+      name: "Jacob", email: "jacob@gmail.com", phoneNumber: "1234567");
+  final repository = LoginRepositoryImpl(datasource);
 
   group("loginEmail", () {
     test('should get FirebaseUser', () async {
-      when(datasource.loginEmail()).thenAnswer((_) async => firebaseUser);
+      when(datasource.loginEmail()).thenAnswer((_) async => userReturn);
       var result = await repository.loginEmail();
-      expect(result, isA<Right<dynamic, User>>());
+      expect(result, isA<Right<dynamic, LoggedUser>>());
     });
     test('should call ErrorLoginEmail', () async {
       when(datasource.loginEmail()).thenThrow(ErrorLoginEmail());
@@ -39,11 +28,11 @@ main() {
     });
   });
   group("loginPhone", () {
-    test('should get FirebaseUser', () async {
+    test('should get LoggedUser', () async {
       when(datasource.loginPhone(phone: anyNamed('phone')))
-          .thenAnswer((_) async => firebaseUser);
+          .thenAnswer((_) async => userReturn);
       var result = await repository.loginPhone();
-      expect(result, isA<Right<dynamic, User>>());
+      expect(result, isA<Right<dynamic, LoggedUser>>());
     });
     test('should call ErrorLoginPhone', () async {
       when(datasource.loginPhone(phone: anyNamed('phone')))
@@ -63,9 +52,9 @@ main() {
       when(datasource.validateCode(
               code: anyNamed('code'),
               verificationId: anyNamed('verificationId')))
-          .thenAnswer((_) async => firebaseUser);
+          .thenAnswer((_) async => userReturn);
       var result = await repository.verifyPhoneCode();
-      expect(result, isA<Right<dynamic, User>>());
+      expect(result, isA<Right<dynamic, LoggedUser>>());
     });
     test('should call ErrorLoginPhone', () async {
       when(datasource.validateCode(
