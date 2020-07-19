@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/modules/login/domain/entities/logged_user.dart';
 import 'package:guard_class/app/modules/login/domain/entities/logged_user_info.dart';
 import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
 import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
@@ -23,7 +22,7 @@ main() {
     test('should get UserModel', () async {
       when(datasource.loginEmail()).thenAnswer((_) async => userReturn);
       var result = await repository.loginEmail();
-      expect(result, isA<Right<dynamic, LoggedUser>>());
+      expect(result, isA<Right<dynamic, LoggedUserInfo>>());
     });
     test('should call ErrorLoginEmail', () async {
       when(datasource.loginEmail()).thenThrow(ErrorLoginEmail());
@@ -36,7 +35,7 @@ main() {
       when(datasource.loginPhone(phone: anyNamed('phone')))
           .thenAnswer((_) async => userReturn);
       var result = await repository.loginPhone();
-      expect(result, isA<Right<dynamic, LoggedUser>>());
+      expect(result, isA<Right<dynamic, LoggedUserInfo>>());
     });
     test('should call ErrorLoginPhone', () async {
       when(datasource.loginPhone(phone: anyNamed('phone')))
@@ -58,7 +57,7 @@ main() {
               verificationId: anyNamed('verificationId')))
           .thenAnswer((_) async => userReturn);
       var result = await repository.verifyPhoneCode();
-      expect(result, isA<Right<dynamic, LoggedUser>>());
+      expect(result, isA<Right<dynamic, LoggedUserInfo>>());
     });
     test('should call ErrorLoginPhone', () async {
       when(datasource.validateCode(
@@ -86,7 +85,7 @@ main() {
     test('should get logout', () async {
       when(datasource.logout()).thenAnswer((_) async {});
       var result = await repository.logout();
-      expect(result, isA<Right<dynamic, int>>());
+      expect(result, isA<Right<dynamic, Unit>>());
     });
     test('should Throw when user try logout', () async {
       when(datasource.logout()).thenThrow(ErrorGetLoggedUser());

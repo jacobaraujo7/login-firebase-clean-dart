@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:guard_class/app/modules/login/domain/entities/logged_user.dart';
 import 'package:guard_class/app/modules/login/domain/entities/login_credential.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/login_with_email.dart';
 import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
+import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
 import 'package:mockito/mockito.dart';
 
 class LoginRepositoryMock extends Mock implements LoginRepository {}
@@ -27,7 +26,7 @@ main() {
     expect(result.leftMap((l) => l is ErrorLoginEmail), Left(true));
   });
   test('should consume repository loginEmail', () async {
-    var user = LoggedUser();
+    var user = UserModel(name: "null");
     when(repository.loginEmail(
             email: anyNamed('email'), password: anyNamed('password')))
         .thenAnswer((_) async => Right(user));
