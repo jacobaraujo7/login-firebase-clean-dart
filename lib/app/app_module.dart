@@ -11,6 +11,7 @@ import 'modules/home/home_module.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        ...LoginModule.export,
         $AuthStore,
         Bind((i) => FirebaseAuth.instance),
       ];

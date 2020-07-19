@@ -63,4 +63,22 @@ class FirebaseDataSourceImpl implements LoginDataSource {
       email: user.email,
     );
   }
+
+  @override
+  Future<UserModel> currentUser() async {
+    var user = (await auth.currentUser());
+
+    if (user == null) throw ErrorGetLoggedUser();
+
+    return UserModel(
+      name: user.displayName,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+    );
+  }
+
+  @override
+  Future<void> logout() async {
+    return await auth.signOut();
+  }
 }

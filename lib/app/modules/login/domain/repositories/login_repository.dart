@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:guard_class/app/modules/login/domain/entities/logged_user.dart';
+import 'package:guard_class/app/modules/login/domain/entities/logged_user_info.dart';
 import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
 
 abstract class LoginRepository {
@@ -8,4 +9,8 @@ abstract class LoginRepository {
   Future<Either<Failure, LoggedUser>> loginPhone({String phone});
   Future<Either<Failure, LoggedUser>> verifyPhoneCode(
       {String verificationId, String code});
+
+  Future<Either<Failure, LoggedUserInfo>> loggedUser();
+
+  Future<Either<Failure, int>> logout();
 }

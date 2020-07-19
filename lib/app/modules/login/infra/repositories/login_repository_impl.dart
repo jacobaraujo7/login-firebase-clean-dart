@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:guard_class/app/modules/login/domain/entities/logged_user.dart';
+import 'package:guard_class/app/modules/login/domain/entities/logged_user_info.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
 import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
@@ -45,6 +46,27 @@ class LoginRepositoryImpl implements LoginRepository {
       return Right(user);
     } catch (e) {
       return Left(ErrorLoginPhone(message: "Error login with Phone"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, LoggedUserInfo>> loggedUser() async {
+    try {
+      var user = await dataSource.currentUser();
+      return Right(user);
+    } catch (e) {
+      return Left(ErrorGetLoggedUser(
+          message: "Error ao tentar recuperar usuario atual logado"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> logout() async {
+    try {
+      await dataSource.logout();
+      return Right(0);
+    } catch (e) {
+      return Left(ErrorLogout(message: "Error ao tentar fazer logout"));
     }
   }
 }

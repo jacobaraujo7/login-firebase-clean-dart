@@ -7,7 +7,7 @@ part of 'auth_store.dart';
 // **************************************************************************
 
 final $AuthStore = BindInject(
-  (i) => AuthStore(i<FirebaseAuth>()),
+  (i) => AuthStore(i<GetLoggedUser>(), i<Logout>()),
   singleton: true,
   lazy: true,
 );

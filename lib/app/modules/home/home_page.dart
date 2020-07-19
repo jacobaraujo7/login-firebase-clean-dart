@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         SizedBox(height: 10),
         RaisedButton(
           onPressed: () {
-            authStore.logout();
+            authStore.signOut();
           },
           child: Text("Logout"),
         ),

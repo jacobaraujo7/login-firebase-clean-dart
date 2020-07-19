@@ -95,4 +95,27 @@ main() {
     expect(() async => await datasource.loginPhone(phone: "3"),
         throwsA(isA<NotAutomaticRetrieved>()));
   });
+  test('should return Logged User', () async {
+    when(auth.currentUser()).thenAnswer((_) async => firebaseUser);
+    var result = await datasource.currentUser();
+    expect(result.name, equals(user.name));
+    expect(result.phoneNumber, equals(user.phoneNumber));
+    expect(result.email, equals(user.email));
+  });
+
+  test('should return ErrorGetLoggedUser if User is not logged', () async {
+    when(auth.currentUser()).thenAnswer((_) async => null);
+
+    expect(datasource.currentUser(), throwsA(isA<ErrorGetLoggedUser>()));
+  });
+
+  test('should complete logout', () async {
+    when(auth.signOut()).thenAnswer((_) async {});
+    expect(datasource.logout(), completes);
+  });
+
+  test('should return error', () async {
+    when(auth.signOut()).thenThrow(Exception());
+    expect(datasource.logout(), throwsA(isA<Exception>()));
+  });
 }
