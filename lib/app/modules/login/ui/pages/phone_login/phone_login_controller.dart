@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:guard_class/app/core/stores/auth_store.dart';
+import 'package:guard_class/app/modules/login/domain/entities/login_credential.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/login_with_phone.dart';
-import 'package:guard_class/app/modules/login/infra/exceptions/errors.dart';
-import 'package:guard_class/app/modules/login/infra/models/login_credencials.dart';
+import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
 import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
 import 'package:guard_class/app/modules/login/ui/utils/loading_dialog.dart';
 import 'package:mobx/mobx.dart';
@@ -23,17 +23,21 @@ abstract class _PhoneLoginControllerBase with Store {
       this.loginWithPhoneUsecase, this.loading, this.authStore);
 
   @observable
-  LoginCredentials credentials = LoginCredentials();
+  String phone = "";
 
   @computed
-  bool get isValid => credentials.isValidPhone;
+  LoginCredential get credential =>
+      LoginCredential.withPhone(phoneNumber: phone);
+
+  @computed
+  bool get isValid => credential.isValidPhone;
 
   @action
-  setLoginCredentials(LoginCredentials value) => credentials = value;
+  setPhone(String value) => this.phone = value;
 
   enterPhone() async {
     loading.show();
-    var result = await loginWithPhoneUsecase(credentials);
+    var result = await loginWithPhoneUsecase(credential);
     await loading.hide();
     result.fold((failure) {
       if (failure is NotAutomaticRetrieved) {

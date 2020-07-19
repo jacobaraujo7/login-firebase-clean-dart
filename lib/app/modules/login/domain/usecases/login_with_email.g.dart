@@ -6,8 +6,8 @@ part of 'login_with_email.dart';
 // InjectionGenerator
 // **************************************************************************
 
-final $LoginWithEmail = BindInject(
-  (i) => LoginWithEmail(i<LoginRepository>()),
+final $LoginWithEmailImpl = BindInject(
+  (i) => LoginWithEmailImpl(i<LoginRepository>()),
   singleton: false,
   lazy: true,
 );

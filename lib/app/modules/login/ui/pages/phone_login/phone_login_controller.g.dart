@@ -20,6 +20,13 @@ final $PhoneLoginController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PhoneLoginController on _PhoneLoginControllerBase, Store {
+  Computed<LoginCredential> _$credentialComputed;
+
+  @override
+  LoginCredential get credential => (_$credentialComputed ??=
+          Computed<LoginCredential>(() => super.credential,
+              name: '_PhoneLoginControllerBase.credential'))
+      .value;
   Computed<bool> _$isValidComputed;
 
   @override
@@ -27,18 +34,18 @@ mixin _$PhoneLoginController on _PhoneLoginControllerBase, Store {
           name: '_PhoneLoginControllerBase.isValid'))
       .value;
 
-  final _$credentialsAtom = Atom(name: '_PhoneLoginControllerBase.credentials');
+  final _$phoneAtom = Atom(name: '_PhoneLoginControllerBase.phone');
 
   @override
-  LoginCredentials get credentials {
-    _$credentialsAtom.reportRead();
-    return super.credentials;
+  String get phone {
+    _$phoneAtom.reportRead();
+    return super.phone;
   }
 
   @override
-  set credentials(LoginCredentials value) {
-    _$credentialsAtom.reportWrite(value, super.credentials, () {
-      super.credentials = value;
+  set phone(String value) {
+    _$phoneAtom.reportWrite(value, super.phone, () {
+      super.phone = value;
     });
   }
 
@@ -46,11 +53,11 @@ mixin _$PhoneLoginController on _PhoneLoginControllerBase, Store {
       ActionController(name: '_PhoneLoginControllerBase');
 
   @override
-  dynamic setLoginCredentials(LoginCredentials value) {
+  dynamic setPhone(String value) {
     final _$actionInfo = _$_PhoneLoginControllerBaseActionController
-        .startAction(name: '_PhoneLoginControllerBase.setLoginCredentials');
+        .startAction(name: '_PhoneLoginControllerBase.setPhone');
     try {
-      return super.setLoginCredentials(value);
+      return super.setPhone(value);
     } finally {
       _$_PhoneLoginControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -59,7 +66,8 @@ mixin _$PhoneLoginController on _PhoneLoginControllerBase, Store {
   @override
   String toString() {
     return '''
-credentials: ${credentials},
+phone: ${phone},
+credential: ${credential},
 isValid: ${isValid}
     ''';
   }

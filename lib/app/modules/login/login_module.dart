@@ -18,9 +18,9 @@ class LoginModule extends ChildModule {
         $VerifyCodeController,
         $LoginController,
         $PhoneLoginController,
-        $LoginWithEmail,
-        $VerifyPhoneCode,
-        $LoginWithPhone,
+        $LoginWithEmailImpl,
+        $VerifyPhoneCodeImpl,
+        $LoginWithPhoneImpl,
         $LoginRepositoryImpl,
         $FirebaseDataSourceImpl,
         $LoadingDialogImpl

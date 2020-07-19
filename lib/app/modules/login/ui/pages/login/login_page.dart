@@ -23,11 +23,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
-                onChanged: (value) {
-                  controller.setLoginCredentials(
-                    controller.credentials.copyWith(email: value),
-                  );
-                },
+                onChanged: controller.setEmail,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Email",
@@ -37,11 +33,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                 height: 10,
               ),
               TextField(
-                onChanged: (value) {
-                  controller.setLoginCredentials(
-                    controller.credentials.copyWith(password: value),
-                  );
-                },
+                onChanged: controller.setPassword,
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:guard_class/app/core/usecase/logged_user_info.dart';
+import 'package:guard_class/app/modules/login/infra/models/logged_user_info.dart';
 
 class LoggedUserAdapter {
   static LoggedUserInfo execute(FirebaseUser firebaseUser) {

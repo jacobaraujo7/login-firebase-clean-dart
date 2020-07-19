@@ -21,6 +21,13 @@ final $VerifyCodeController = BindInject(
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$VerifyCodeController on _VerifyCodeControllerBase, Store {
+  Computed<LoginCredential> _$credentialComputed;
+
+  @override
+  LoginCredential get credential => (_$credentialComputed ??=
+          Computed<LoginCredential>(() => super.credential,
+              name: '_VerifyCodeControllerBase.credential'))
+      .value;
   Computed<bool> _$isValidComputed;
 
   @override
@@ -28,18 +35,18 @@ mixin _$VerifyCodeController on _VerifyCodeControllerBase, Store {
           name: '_VerifyCodeControllerBase.isValid'))
       .value;
 
-  final _$credentialsAtom = Atom(name: '_VerifyCodeControllerBase.credentials');
+  final _$codeAtom = Atom(name: '_VerifyCodeControllerBase.code');
 
   @override
-  LoginCredentials get credentials {
-    _$credentialsAtom.reportRead();
-    return super.credentials;
+  String get code {
+    _$codeAtom.reportRead();
+    return super.code;
   }
 
   @override
-  set credentials(LoginCredentials value) {
-    _$credentialsAtom.reportWrite(value, super.credentials, () {
-      super.credentials = value;
+  set code(String value) {
+    _$codeAtom.reportWrite(value, super.code, () {
+      super.code = value;
     });
   }
 
@@ -47,11 +54,11 @@ mixin _$VerifyCodeController on _VerifyCodeControllerBase, Store {
       ActionController(name: '_VerifyCodeControllerBase');
 
   @override
-  dynamic setLoginCredentials(LoginCredentials value) {
+  dynamic setCode(String value) {
     final _$actionInfo = _$_VerifyCodeControllerBaseActionController
-        .startAction(name: '_VerifyCodeControllerBase.setLoginCredentials');
+        .startAction(name: '_VerifyCodeControllerBase.setCode');
     try {
-      return super.setLoginCredentials(value);
+      return super.setCode(value);
     } finally {
       _$_VerifyCodeControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -60,7 +67,8 @@ mixin _$VerifyCodeController on _VerifyCodeControllerBase, Store {
   @override
   String toString() {
     return '''
-credentials: ${credentials},
+code: ${code},
+credential: ${credential},
 isValid: ${isValid}
     ''';
   }

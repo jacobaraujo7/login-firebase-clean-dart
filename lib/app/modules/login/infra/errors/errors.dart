@@ -1,4 +1,6 @@
-import 'package:guard_class/app/core/errors/failure.dart';
+abstract class Failure implements Exception {
+  String get message;
+}
 
 class ErrorLoginEmail extends Failure {
   final String message;

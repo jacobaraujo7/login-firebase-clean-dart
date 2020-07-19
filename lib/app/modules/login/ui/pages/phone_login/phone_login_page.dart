@@ -24,11 +24,7 @@ class _PhoneLoginPageState
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
-                onChanged: (value) {
-                  controller.setLoginCredentials(
-                    controller.credentials.copyWith(phone: value),
-                  );
-                },
+                onChanged: controller.setPhone,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Phone",

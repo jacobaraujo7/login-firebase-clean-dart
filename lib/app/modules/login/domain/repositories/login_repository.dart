@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
 import 'package:guard_class/app/modules/login/domain/entities/user.dart';
+import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
 
 abstract class LoginRepository {
   Future<Either<Failure, User>> loginEmail({String email, String password});

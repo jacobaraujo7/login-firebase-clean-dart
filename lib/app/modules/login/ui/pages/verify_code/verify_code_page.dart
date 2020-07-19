@@ -28,11 +28,7 @@ class _VerifyCodePageState
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
-                onChanged: (value) {
-                  controller.setLoginCredentials(
-                    controller.credentials.copyWith(code: value),
-                  );
-                },
+                onChanged: controller.setCode,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Verification Code",

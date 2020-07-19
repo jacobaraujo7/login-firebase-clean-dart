@@ -1,10 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
 import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
-import 'package:guard_class/app/modules/login/infra/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
 
 part 'login_repository_impl.g.dart';
 

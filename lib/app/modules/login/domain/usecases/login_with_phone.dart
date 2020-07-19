@@ -1,24 +1,26 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:guard_class/app/core/errors/failure.dart';
-import 'package:guard_class/app/core/usecase/usecase.dart';
+import 'package:guard_class/app/modules/login/domain/entities/login_credential.dart';
 import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
-import 'package:guard_class/app/modules/login/infra/exceptions/errors.dart';
-import 'package:guard_class/app/modules/login/infra/models/login_credencials.dart';
+import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
 part 'login_with_phone.g.dart';
 
+abstract class LoginWithPhone {
+  Future<Either<Failure, User>> call(LoginCredential credencial);
+}
+
 @Injectable(singleton: false)
-class LoginWithPhone implements UseCase<User, LoginCredentials> {
+class LoginWithPhoneImpl implements LoginWithPhone {
   final LoginRepository repository;
 
-  LoginWithPhone(this.repository);
+  LoginWithPhoneImpl(this.repository);
 
   @override
-  Future<Either<Failure, User>> call([LoginCredentials c]) async {
-    if (!c.isValidPhone) {
+  Future<Either<Failure, User>> call(LoginCredential credencial) async {
+    if (!credencial.isValidPhone) {
       return Left(ErrorLoginPhone(message: "Invalid Phone number"));
     }
-    return await repository.loginPhone(phone: c.phone);
+    return await repository.loginPhone(phone: credencial.phone);
   }
 }

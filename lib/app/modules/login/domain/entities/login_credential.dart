@@ -1,13 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart' as validator;
 
-class LoginCredentials {
+class LoginCredential {
   final String email;
   final String password;
   final String phone;
   final String code;
   final String verificationId;
 
-  LoginCredentials(
+  LoginCredential._(
       {this.phone, this.verificationId, this.email, this.password, this.code});
 
   bool get isValidEmail => validator.isEmail(email ?? "");
@@ -20,19 +21,25 @@ class LoginCredentials {
   bool get isValidVerificationId =>
       verificationId != null && verificationId.isNotEmpty;
 
-  LoginCredentials copyWith({
-    String email,
-    String password,
-    String phone,
-    String verificationId,
-    String code,
-  }) {
-    return LoginCredentials(
-      email: email ?? this.email,
-      password: password ?? this.password,
-      phone: phone ?? this.phone,
-      verificationId: verificationId ?? this.verificationId,
-      code: code ?? this.code,
+  factory LoginCredential.withEmailAndPassword(
+      {@required String email, @required String password}) {
+    return LoginCredential._(
+      email: email,
+      password: password,
+    );
+  }
+
+  factory LoginCredential.withPhone({@required String phoneNumber}) {
+    return LoginCredential._(
+      phone: phoneNumber,
+    );
+  }
+
+  factory LoginCredential.withVerificationCode(
+      {@required String code, @required String verificationId}) {
+    return LoginCredential._(
+      code: code,
+      verificationId: verificationId,
     );
   }
 }
