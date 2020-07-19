@@ -1,27 +1,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:guard_class/app/core/errors/failure.dart';
-import 'package:guard_class/app/modules/login/data/datasources/firebase_datasource.dart';
-import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
-import 'package:guard_class/app/modules/login/data/models/user_model.dart';
 import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
+import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
+import 'package:guard_class/app/modules/login/infra/exceptions/errors.dart';
 
-part 'firebase_login_repository_impl.g.dart';
+part 'login_repository_impl.g.dart';
 
 @Injectable(singleton: false)
-class FirebaseLoginRepositoryImpl implements LoginRepository {
-  final FirebaseDataSource firebase;
+class LoginRepositoryImpl implements LoginRepository {
+  final LoginDataSource firebase;
 
-  FirebaseLoginRepositoryImpl(this.firebase);
+  LoginRepositoryImpl(this.firebase);
 
   @override
   Future<Either<Failure, User>> loginEmail(
       {String email, String password}) async {
     try {
-      var firebaseUser =
-          await firebase.loginEmail(email: email, password: password);
-      var user = UserModel.fromFirebaseUser(firebaseUser);
+      var user = await firebase.loginEmail(email: email, password: password);
       return Right(user);
     } catch (e) {
       return Left(ErrorLoginEmail(message: "Error login with Email"));
@@ -31,8 +28,7 @@ class FirebaseLoginRepositoryImpl implements LoginRepository {
   @override
   Future<Either<Failure, User>> loginPhone({String phone}) async {
     try {
-      var firebaseUser = await firebase.loginPhone(phone: phone);
-      var user = UserModel.fromFirebaseUser(firebaseUser);
+      var user = await firebase.loginPhone(phone: phone);
       return Right(user);
     } on NotAutomaticRetrieved catch (e) {
       return Left(e);
@@ -45,9 +41,8 @@ class FirebaseLoginRepositoryImpl implements LoginRepository {
   Future<Either<Failure, User>> verifyPhoneCode(
       {String verificationId, String code}) async {
     try {
-      var firebaseUser = await firebase.validateCode(
+      var user = await firebase.validateCode(
           verificationId: verificationId, code: code);
-      var user = UserModel.fromFirebaseUser(firebaseUser);
       return Right(user);
     } catch (e) {
       return Left(ErrorLoginPhone(message: "Error login with Phone"));

@@ -6,7 +6,7 @@ part of 'verify_phone_code.dart';
 // InjectionGenerator
 // **************************************************************************
 
-final verifyPhoneCode = BindInject(
+final $VerifyPhoneCode = BindInject(
   (i) => VerifyPhoneCode(i<LoginRepository>()),
   singleton: false,
   lazy: true,

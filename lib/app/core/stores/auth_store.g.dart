@@ -6,7 +6,7 @@ part of 'auth_store.dart';
 // InjectionGenerator
 // **************************************************************************
 
-final authStore = BindInject(
+final $AuthStore = BindInject(
   (i) => AuthStore(i<FirebaseAuth>()),
   singleton: true,
   lazy: true,

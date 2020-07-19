@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:guard_class/app/core/stores/auth_store.dart';
-import 'package:guard_class/app/modules/login/data/models/login_credencials.dart';
-import 'package:guard_class/app/modules/login/data/models/user_model.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/login_with_email.dart';
-import 'package:guard_class/app/modules/login/presenter/utils/loading_dialog.dart';
+import 'package:guard_class/app/modules/login/infra/models/login_credencials.dart';
+import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
+import 'package:guard_class/app/modules/login/ui/utils/loading_dialog.dart';
 import 'package:mobx/mobx.dart';
 import 'package:asuka/asuka.dart' as asuka;
 

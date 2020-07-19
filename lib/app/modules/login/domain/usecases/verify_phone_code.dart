@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
-import 'package:guard_class/app/modules/login/data/models/login_credencials.dart';
 import 'package:guard_class/app/core/errors/failure.dart';
 import 'package:guard_class/app/core/usecase/usecase.dart';
 import 'package:guard_class/app/modules/login/domain/entities/user.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
+import 'package:guard_class/app/modules/login/infra/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/infra/models/login_credencials.dart';
 
 part 'verify_phone_code.g.dart';
 

@@ -2,31 +2,32 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:guard_class/app/modules/login/data/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
+import 'package:guard_class/app/modules/login/infra/exceptions/errors.dart';
+import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
 
 part 'firebase_datasource.g.dart';
 
-abstract class FirebaseDataSource {
-  Future<FirebaseUser> loginPhone({String phone});
-  Future<FirebaseUser> loginEmail({String email, String password});
-  Future<FirebaseUser> validateCode({String verificationId, String code});
-}
-
 @Injectable(singleton: false)
-class FirebaseDataSourceImpl implements FirebaseDataSource {
+class FirebaseDataSourceImpl implements LoginDataSource {
   final FirebaseAuth auth;
 
   FirebaseDataSourceImpl(this.auth);
 
   @override
-  Future<FirebaseUser> loginEmail({String email, String password}) async {
+  Future<UserModel> loginEmail({String email, String password}) async {
     var result =
         await auth.signInWithEmailAndPassword(email: email, password: password);
-    return result.user;
+    var user = result.user;
+    return UserModel(
+      name: user.displayName,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+    );
   }
 
   @override
-  Future<FirebaseUser> loginPhone({String phone}) async {
+  Future<UserModel> loginPhone({String phone}) async {
     var completer = Completer<AuthCredential>();
     await auth.verifyPhoneNumber(
         phoneNumber: phone,
@@ -43,14 +44,23 @@ class FirebaseDataSourceImpl implements FirebaseDataSource {
         codeAutoRetrievalTimeout: (v) {});
 
     var credential = await completer.future;
-    return (await auth.signInWithCredential(credential)).user;
+    var user = (await auth.signInWithCredential(credential)).user;
+    return UserModel(
+      name: user.displayName,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+    );
   }
 
   @override
-  Future<FirebaseUser> validateCode(
-      {String verificationId, String code}) async {
+  Future<UserModel> validateCode({String verificationId, String code}) async {
     var _credential = PhoneAuthProvider.getCredential(
         verificationId: verificationId, smsCode: code);
-    return (await auth.signInWithCredential(_credential)).user;
+    var user = (await auth.signInWithCredential(_credential)).user;
+    return UserModel(
+      name: user.displayName,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+    );
   }
 }

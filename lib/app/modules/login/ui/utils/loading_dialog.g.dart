@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'firebase_login_repository_impl.dart';
+part of 'loading_dialog.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final firebaseLoginRepositoryImpl = BindInject(
-  (i) => FirebaseLoginRepositoryImpl(i<FirebaseDataSource>()),
-  singleton: false,
+final $LoadingDialogImpl = BindInject(
+  (i) => LoadingDialogImpl(),
+  singleton: true,
   lazy: true,
 );

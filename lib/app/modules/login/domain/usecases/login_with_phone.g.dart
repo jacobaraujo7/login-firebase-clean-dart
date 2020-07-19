@@ -6,7 +6,7 @@ part of 'login_with_phone.dart';
 // InjectionGenerator
 // **************************************************************************
 
-final loginWithPhone = BindInject(
+final $LoginWithPhone = BindInject(
   (i) => LoginWithPhone(i<LoginRepository>()),
   singleton: false,
   lazy: true,
