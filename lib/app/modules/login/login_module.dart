@@ -1,11 +1,11 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'data/datasources/firebase_datasource.dart';
+import 'data/datasources/firebase/firebase_datasource.dart';
+import 'data/repositories/login_repository_impl.dart';
 import 'domain/usecases/get_logged_user.dart';
 import 'domain/usecases/login_with_email.dart';
 import 'domain/usecases/login_with_phone.dart';
 import 'domain/usecases/logout.dart';
 import 'domain/usecases/verify_phone_code.dart';
-import 'infra/repositories/login_repository_impl.dart';
 import 'ui/pages/login/login_controller.dart';
 import 'ui/pages/login/login_page.dart';
 import 'ui/pages/phone_login/phone_login_controller.dart';

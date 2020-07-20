@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:guard_class/app/modules/login/domain/errors/errors.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/logout.dart';
-import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
 import 'package:mockito/mockito.dart';
 
 class LoginRepositoryMock extends Mock implements LoginRepository {}

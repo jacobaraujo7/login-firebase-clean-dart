@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
-import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
-import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
+import 'package:guard_class/app/modules/login/data/models/user_model.dart';
+import 'package:guard_class/app/modules/login/domain/errors/errors.dart';
+
+import '../login_datasource.dart';
 
 part 'firebase_datasource.g.dart';
 

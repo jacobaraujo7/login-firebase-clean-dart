@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:guard_class/app/modules/login/data/datasources/firebase_datasource.dart';
+import 'package:guard_class/app/modules/login/data/datasources/firebase/firebase_datasource.dart';
 import 'package:guard_class/app/modules/login/domain/entities/logged_user.dart';
-import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
+import 'package:guard_class/app/modules/login/domain/errors/errors.dart';
 import 'package:mockito/mockito.dart';
 
 class FirebaseUserMock extends Mock implements FirebaseUser {}

@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:guard_class/app/modules/login/data/models/user_model.dart';
 import 'package:guard_class/app/modules/login/domain/entities/logged_user_info.dart';
+import 'package:guard_class/app/modules/login/domain/errors/errors.dart';
 import 'package:guard_class/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/get_logged_user.dart';
-import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
-import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
 import 'package:mockito/mockito.dart';
 
 class LoginRepositoryMock extends Mock implements LoginRepository {}

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:guard_class/app/modules/login/data/datasources/login_datasource.dart';
+import 'package:guard_class/app/modules/login/data/models/user_model.dart';
+import 'package:guard_class/app/modules/login/data/repositories/login_repository_impl.dart';
 import 'package:guard_class/app/modules/login/domain/entities/logged_user_info.dart';
-import 'package:guard_class/app/modules/login/infra/datasources/login_datasource.dart';
-import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
-import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
-import 'package:guard_class/app/modules/login/infra/repositories/login_repository_impl.dart';
+import 'package:guard_class/app/modules/login/domain/errors/errors.dart';
 import 'package:mockito/mockito.dart';
 
 class LoginDataSourceMock extends Mock implements LoginDataSource {}

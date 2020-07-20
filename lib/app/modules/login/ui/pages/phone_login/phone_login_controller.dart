@@ -1,13 +1,14 @@
+import 'package:asuka/asuka.dart' as asuka;
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:guard_class/app/core/stores/auth_store.dart';
-import 'package:guard_class/app/modules/login/domain/entities/login_credential.dart';
-import 'package:guard_class/app/modules/login/domain/usecases/login_with_phone.dart';
-import 'package:guard_class/app/modules/login/infra/errors/errors.dart';
-import 'package:guard_class/app/modules/login/infra/models/user_model.dart';
-import 'package:guard_class/app/modules/login/ui/utils/loading_dialog.dart';
 import 'package:mobx/mobx.dart';
-import 'package:asuka/asuka.dart' as asuka;
+
+import '../../../../../core/stores/auth_store.dart';
+import '../../../data/models/user_model.dart';
+import '../../../domain/entities/login_credential.dart';
+import '../../../domain/errors/errors.dart';
+import '../../../domain/usecases/login_with_phone.dart';
+import '../../utils/loading_dialog.dart';
 
 part 'phone_login_controller.g.dart';
 
