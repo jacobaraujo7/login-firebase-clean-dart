@@ -5,7 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../core/stores/auth_store.dart';
-import '../../../data/models/user_model.dart';
 import '../../../domain/entities/login_credential.dart';
 import '../../../domain/usecases/verify_phone_code.dart';
 import '../../utils/loading_dialog.dart';
@@ -45,7 +44,7 @@ abstract class _VerifyCodeControllerBase with Store {
     result.fold((failure) {
       asuka.showSnackBar(SnackBar(content: Text(failure.message)));
     }, (user) {
-      authStore.setUser(user as UserModel);
+      authStore.setUser(user);
       Modular.to.popUntil(ModalRoute.withName(Modular.link.modulePath));
       Modular.to.pop();
     });

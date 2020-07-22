@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_with_phone.dart';
+part of 'flutter_connectivity_driver_impl.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final $LoginWithPhoneImpl = BindInject(
-  (i) => LoginWithPhoneImpl(i<LoginRepository>(), i<ConnectivityService>()),
+final $FlutterConnectivityDriver = BindInject(
+  (i) => FlutterConnectivityDriver(i<Connectivity>()),
   singleton: false,
   lazy: true,
 );

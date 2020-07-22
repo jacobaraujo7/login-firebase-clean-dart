@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_with_phone.dart';
+part of 'connectivity_service_impl.dart';
 
 // **************************************************************************
 // InjectionGenerator
 // **************************************************************************
 
-final $LoginWithPhoneImpl = BindInject(
-  (i) => LoginWithPhoneImpl(i<LoginRepository>(), i<ConnectivityService>()),
+final $ConnectivityServiceImpl = BindInject(
+  (i) => ConnectivityServiceImpl(i<ConnectivityDriver>()),
   singleton: false,
   lazy: true,
 );

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:guard_class/app/core/stores/auth_store.dart';
-import 'package:guard_class/app/modules/login/data/models/user_model.dart';
 import 'package:guard_class/app/modules/login/domain/entities/login_credential.dart';
 import 'package:guard_class/app/modules/login/domain/usecases/login_with_email.dart';
-import 'package:guard_class/app/modules/login/ui/utils/loading_dialog.dart';
+import 'package:guard_class/app/modules/login/presenter/utils/loading_dialog.dart';
 import 'package:mobx/mobx.dart';
 import 'package:asuka/asuka.dart' as asuka;
 
@@ -48,7 +47,7 @@ abstract class _LoginControllerBase with Store {
     result.fold((failure) {
       asuka.showSnackBar(SnackBar(content: Text(failure.message)));
     }, (user) {
-      authStore.setUser(user as UserModel);
+      authStore.setUser(user);
       Modular.to.popUntil(ModalRoute.withName(Modular.link.modulePath));
       Modular.to.pop();
     });
