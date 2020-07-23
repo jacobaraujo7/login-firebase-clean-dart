@@ -1,6 +1,6 @@
-# Login with Firebase and Clean Architecture
+# Login with Firebase and Clean Dart
 
-Login with email and phone number using firebase auth, MobX, Modular and Clean Architecture.
+Login with email and phone number using firebase auth, MobX, Modular and [Clean Dart](https://github.com/Flutterando/Clean-Dart).
 
 ## Getting Started
 
