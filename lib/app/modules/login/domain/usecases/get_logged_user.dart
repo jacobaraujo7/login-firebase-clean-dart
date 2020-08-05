@@ -18,6 +18,6 @@ class GetLoggedUserImpl implements GetLoggedUser {
 
   @override
   Future<Either<Failure, LoggedUserInfo>> call() async {
-    return await repository.loggedUser();
+    return repository.loggedUser();
   }
 }
