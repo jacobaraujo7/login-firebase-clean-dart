@@ -80,6 +80,6 @@ class FirebaseDataSourceImpl implements LoginDataSource {
 
   @override
   Future<void> logout() async {
-    return await auth.signOut();
+    await auth.signOut();
   }
 }
