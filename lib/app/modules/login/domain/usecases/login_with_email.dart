@@ -35,7 +35,7 @@ class LoginWithEmailImpl implements LoginWithEmail {
       return Left(ErrorLoginEmail(message: "Invalid Password"));
     }
 
-    return await repository.loginEmail(
+    return repository.loginEmail(
       email: credential.email,
       password: credential.password,
     );
