@@ -29,6 +29,7 @@ class LoginWithPhoneImpl implements LoginWithPhone {
     if (result.isLeft()) {
       return result.map((r) => null);
     }
-    return await repository.loginPhone(phone: credencial.phone);
+    
+    return repository.loginPhone(phone: credencial.phone);
   }
 }
