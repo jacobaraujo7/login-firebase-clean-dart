@@ -17,6 +17,6 @@ class LogoutImpl implements Logout {
 
   @override
   Future<Either<Failure, Unit>> call() async {
-    return await repository.logout();
+    return repository.logout();
   }
 }
