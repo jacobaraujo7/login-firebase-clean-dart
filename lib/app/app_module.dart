@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class AppModule extends MainModule {
         ...LoginModule.export,
         $AuthStore,
         Bind((i) => FirebaseAuth.instance),
+        Bind((i) => Connectivity()),
       ];
 
   @override
